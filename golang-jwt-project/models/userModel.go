@@ -11,12 +11,12 @@ type User struct {
 	First_name    *string            `json:"first_name" validate:"required,min=2,max=100"`
 	Last_name     *string            `json:"last_name" validate:"required,min=2,max=100" `
 	Password      *string            `json:"password" validate:"required,min=6"`
-	Email         *string            `json:"email" validate:email required `
-	Phone         *string            `json:"phone" validate:"required"`
-	Token         *string            `json:"token" `
-	User_type     *string            `json:"user_type validate:"required ,eq=ADMIN|eq=USER`
+	Email         *string            `json:"email" validate:"email,required" `
+	Phone         *string            `json:"phone" validate:"required,max=10,numeric"`
+	Token         *string            `json:"token"`
+	User_type     *string            `json:"user_type" validate:"required,eq=ADMIN|eq=USER"`
 	Refresh_token *string            `json:"refresh_token"`
-	Ceated_at     time.Time          `json:"created_at"`
+	Created_at    time.Time          `json:"created_at"`
 	Updated_at    time.Time          `json:"updated_at"`
-	User_id       *string            `json:"user_id"`
+	User_id       string             `json:"user_id"`
 }
