@@ -10,15 +10,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
+	"github.com/vamsi422/golang-jwt-project/database"
 	helper "github.com/vamsi422/golang-jwt-project/helpers"
 	"github.com/vamsi422/golang-jwt-project/models"
-	"golang.org/x/crypto/bcrypt"
-
-	//
-	"github.com/vamsi422/golang-jwt-project/database"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var userCollection *mongo.Collection = database.OpenCollection(database.Client, "user")
