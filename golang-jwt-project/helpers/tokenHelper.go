@@ -2,7 +2,6 @@ package helper
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 	"time"
@@ -76,13 +75,11 @@ func ValidateToken(signedToken string) (claims *SignedDetails, msg string) {
 	}
 	claims, ok := token.Claims.(*SignedDetails)
 	if !ok {
-		msg = fmt.Sprintf("the token is Invalid")
-		//msg = err.Error()
+		msg = "the token is Invalid"
 		return
 	}
 	if claims.ExpiresAt.Before(time.Now()) {
-		msg = fmt.Sprintf("token is expired")
-		//msg = err.Error()
+		msg = "token is expired"
 		return
 	}
 	return claims, msg
@@ -106,8 +103,7 @@ func UpdateAllTokens(signedToken string, signedRefreshToken string, userId strin
 		ctx,
 		filter,
 		bson.D{
-			{"$set", updateObj},
-		},
+			{"$set", updateObj}},
 		&opt,
 	)
 	defer cancel()
@@ -116,5 +112,4 @@ func UpdateAllTokens(signedToken string, signedRefreshToken string, userId strin
 		log.Panic(err)
 		return
 	}
-	return
 }
